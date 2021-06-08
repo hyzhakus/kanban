@@ -39,6 +39,13 @@ $this->params['breadcrumbs'][] = $this->title;
                     return $model::getList('role', $model->role);
                 }
             ],
+            [
+                'attribute' => 'avatar',
+                'format'=>'html',
+                'value' => function($model) {
+                    return \app\widgets\ShowFile::widget(['user_id'=>$model->id]);
+                }
+            ],
         ],
     ]) ?>
 

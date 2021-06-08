@@ -3,6 +3,7 @@
 namespace app\models;
 
 use Yii;
+use yii\web\UploadedFile;
 
 /**
  * This is the model class for table "users".
@@ -21,6 +22,8 @@ class User extends \yii\db\ActiveRecord implements \yii\web\IdentityInterface
     CONST ROLE_USER  = 1;
     CONST ROLE_ADMIN = 2;
     CONST ROLE_OWNER = 3;
+
+    public $avatar;
 
     /**
      * {@inheritdoc}
@@ -55,11 +58,22 @@ class User extends \yii\db\ActiveRecord implements \yii\web\IdentityInterface
     {
         return [
             'id' => Yii::t('app', 'ID'),
-            'name' => Yii::t('app', 'Ім\'я'),
+            'name' => Yii::t('app', 'Name'),
             'email' => Yii::t('app', 'E-Mail'),
-            'password' => Yii::t('app', 'Гасло'),
-            'role' => Yii::t('app', 'Роль'),
+            'password' => Yii::t('app', 'Password'),
+            'role' => Yii::t('app', 'Role'),
+            'avatar' => Yii::t('app', 'Avatar'),
         ];
+    }
+
+    public function store() {
+        if($res = $this->save()) {
+            if($file = UploadedFile::getInstance($this, 'avatar')) {
+                $filepath = Yii::getAlias('@app/web/uploads/') . md5($this->id) . '.png';
+                $file->saveAs($filepath);
+            }
+        }
+        return $res;
     }
 
     public function beforeSave($insert)

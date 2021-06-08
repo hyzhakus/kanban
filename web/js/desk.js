@@ -20,23 +20,33 @@ const drop = (event) => {
     var card = $("#"+id)[0].outerHTML;
     var elem = $(event.target);
     try {
-        // remove the spacer content from dropzone
+        // видалити початкову картку
         $("#"+id).remove();
-        // add the draggable content
-        elem.replaceWith(card);
+        // додати картку в нове иісто
+        elem.after(card);
     } catch (error) {
         console.warn("can't move the item to the same place");
     }
+    updateDb(id);
     updateDropzones();
 }
 
+
+const updateDb = (id) => {
+    var url = '/task/move';
+    var task_id = id.substr(2)
+    var desk_id = $("#"+id).parents("div.card").data("id");
+    var data = {task_id: task_id, desk_id: desk_id};
+    $.post(url, data);
+}
+
 const updateDropzones = () => {
-    // after dropping, refresh the drop target areas so there is a dropzone after each item using jQuery here for simplicity
-    var dz = $('<div class="dropzone rounded" ondrop="drop(event)" ondragover="allowDrop(event)" ondragleave="clearDrop(event)"> &nbsp; </div>');
-    // delete old dropzones
+    // html код зони скидання
+    var dz = '<div class="dropzone rounded" ondrop="drop(event)" ondragover="allowDrop(event)" ondragleave="clearDrop(event)"> &nbsp;</div>';
+    // видалити старі зони скидання
     $('.dropzone').remove();
-    // insert new dropzone in any empty swimlanes
-    $(".items").append(dz);
-    // insert new dropdzone after each item
-    dz.insertBefore('.draggable');
+    // вставити нові зони скидання після кожної картки
+    $("div.draggable").after(dz);
+    // вставити нові зони скидання на початку кожного стовпчика
+    $(".items").after(dz);
 };

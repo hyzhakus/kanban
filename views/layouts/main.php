@@ -29,31 +29,26 @@ AppAsset::register($this);
 <div class="wrap">
     <?php
     NavBar::begin([
-        'brandLabel' => Yii::$app->name,
+        'brandLabel' => '<i class="far fa-object-group fa-lg text-success"></i> '.Yii::$app->name,
         'brandUrl' => Yii::$app->homeUrl,
         'options' => [
             'class' => 'navbar navbar-expand-md navbar-light bg-light',
         ],
     ]);
     echo Nav::widget([
-        'options' => ['class' => 'navbar-nav navbar-right'],
+        'options' => ['class' => 'nav navbar-nav ml-auto'],
         'items' => [
             ['label' => Yii::t('app', 'Home'), 'url' => ['/site/index']],
             ['label' => Yii::t('app', 'About'), 'url' => ['/site/about']],
             ['label' => Yii::t('app', 'Desk'), 'url' => ['/desk'], 'visible'=>!Yii::$app->user->isGuest],
             ['label' => Yii::t('app', 'Users'), 'url' => ['/user'], 'visible'=>!Yii::$app->user->isGuest],
-            Yii::$app->user->isGuest ? (
-                ['label' => 'Увійти', 'url' => ['/site/login']]
-            ) : (
-                '<li>'
-                . Html::beginForm(['/site/logout'], 'post')
-                . Html::submitButton(
-                    'Вийти (' . Yii::$app->user->identity->name . ')',
-                    ['class' => 'btn btn-link logout']
-                )
-                . Html::endForm()
-                . '</li>'
-            )
+            ['label' => Yii::t('app', 'Login'), 'url' => ['/site/login'], 'visible'=>Yii::$app->user->isGuest],
+            ['label' =>
+                Yii::t('app', 'Logout'),
+                'url' => ['/site/logout'],
+                'linkOptions' => ['data-method'=>'post'],
+                'visible'=>!Yii::$app->user->isGuest
+            ],
         ],
     ]);
     NavBar::end();

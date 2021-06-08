@@ -75,8 +75,9 @@ class UserController extends Controller
     {
         $model = new User(['scenario'=>'create']);
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id]);
+        if ($model->load(Yii::$app->request->post()) && $model->store()) {
+            Yii::$app->session->setFlash('success', Yii::t('app', 'User created successfully.'));
+            return $this->redirect(['index']);
         }
 
         return $this->render('create', [
@@ -95,7 +96,8 @@ class UserController extends Controller
     {
         $model = $this->findModel($id);
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
+        if ($model->load(Yii::$app->request->post()) && $model->store()) {
+            Yii::$app->session->setFlash('success', Yii::t('app', 'User updated successfully.'));
             return $this->redirect(['view', 'id' => $model->id]);
         }
 
@@ -113,7 +115,12 @@ class UserController extends Controller
      */
     public function actionDelete($id)
     {
-        $this->findModel($id)->delete();
+        try {
+            $this->findModel($id)->delete();
+            Yii::$app->session->setFlash('success', Yii::t('app', 'User deleted successfully.'));
+        } catch(\Exception $e) {
+            Yii::$app->session->setFlash('danger', Yii::t('app', 'Can\'t delete user.'));
+        }
 
         return $this->redirect(['index']);
     }

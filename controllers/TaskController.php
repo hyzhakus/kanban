@@ -24,6 +24,7 @@ class TaskController extends Controller
                 'class' => VerbFilter::className(),
                 'actions' => [
                     'delete' => ['POST'],
+                    'move' => ['POST'],
                 ],
             ],
         ];
@@ -68,10 +69,11 @@ class TaskController extends Controller
         $model = new Task();
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['/desk']);
+            Yii::$app->response->format = \yii\web\Response::FORMAT_JSON;
+            return ['success' => true];
         }
 
-        return $this->render('create', [
+        return $this->renderAjax('create', [
             'model' => $model,
         ]);
     }
@@ -89,10 +91,11 @@ class TaskController extends Controller
         $model = $this->findModel($id);
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id]);
+            Yii::$app->response->format = \yii\web\Response::FORMAT_JSON;
+            return ['success' => true];
         }
 
-        return $this->render('update', [
+        return $this->renderAjax('update', [
             'model' => $model,
         ]);
     }
@@ -105,11 +108,20 @@ class TaskController extends Controller
      * @return mixed
      * @throws NotFoundHttpException if the model cannot be found
      */
-    public function actionDelete($id)
+     public function actionDelete($id)
     {
-        $this->findModel($id)->delete();
+        $model = $this->findModel($id);
+        $model->delete();
+        return $this->renderAjax('delete', [
+            'model' => $model,
+        ]);
+    }
 
-        return $this->redirect(['index']);
+    public function actionMove()
+    {
+        $task_id = (int)Yii::$app->request->post('task_id');
+        $desk_id = (int)Yii::$app->request->post('desk_id');
+        Task::updateAll(['desk_id' => $desk_id], ['id' => $task_id]);
     }
 
     /**

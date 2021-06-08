@@ -26,6 +26,7 @@ use app\models\Desk;
 
     <div class="form-group">
         <?= Html::submitButton(Yii::t('app', 'Save'), ['class' => 'btn btn-success']) ?>
+        <?= Html::button(Yii::t('app', 'Close'), ['class' => 'btn btn-link', 'data-dismiss'=>'modal']) ?>
     </div>
 
     <?php ActiveForm::end(); ?>

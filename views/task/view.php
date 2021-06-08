@@ -17,7 +17,7 @@ $this->params['breadcrumbs'][] = $this->title;
 
     <p>
         <?= Html::a(Yii::t('app', 'Update'), ['update', 'id' => $model->id], ['class' => 'btn btn-primary link-ajax']) ?>
-        <?= Html::a(Yii::t('app', 'Delete'), ['delete', 'id' => $model->id], ['class' => 'btn btn-danger',
+        <?= Html::a(Yii::t('app', 'Delete'), ['delete', 'id' => $model->id], ['class' => 'btn btn-danger link-ajax',
             'data' => [
                 'confirm' => Yii::t('app', 'Are you sure you want to delete this item?'),
                 'method' => 'post',
@@ -28,13 +28,30 @@ $this->params['breadcrumbs'][] = $this->title;
     <?= DetailView::widget([
         'model' => $model,
         'attributes' => [
-            'id',
-            'user_id',
-            'created_at',
-            'name',
+            [
+                'attribute' => 'user_id',
+                'value' => function($model) {
+                    return $model->user->name;
+                }
+            ],
+            [
+                'attribute' => 'desk_id',
+                'value' => function($model) {
+                    return $model->desk->name;
+                }
+            ],
+            [
+                'attribute' => 'name',
+                'value' => function($model) {
+                    return '#'.$model->id.'. '.$model->name;
+                }
+            ],
             'note:ntext',
-            'desk_id',
         ],
     ]) ?>
+
+    <div class="text-center">
+        <?= Html::button(Yii::t('app', 'Close'), ['class' => 'btn btn-primary', 'data-dismiss'=>'modal']) ?>
+    </div>
 
 </div>

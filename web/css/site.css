@@ -141,12 +141,20 @@ div.required label::after {
     Desk styles
 */
 .card.draggable {
-    margin-bottom: 1rem;
     cursor: grab;
 }
 
+.card-body.task {
+    padding: 0 0.5rem;
+}
+
 .droppable {
-    background-color: green;
-    min-height: 120px;
-    margin-bottom: 1rem;
+    border: 2px dashed green;
+    min-height: 3rem;
+    margin: 0.5rem 0;
+}
+
+.dropzone {
+    height: 0.25rem;
+    padding: 0.5rem 0;
 }

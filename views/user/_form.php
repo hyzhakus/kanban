@@ -23,6 +23,8 @@ use app\models\User;
 
     <?= $form->field($model, 'role')->dropDownList(User::getList('role'), ['prompt'=>Yii::t('app', 'Please select')]) ?>
 
+    <?= $form->field($model, 'avatar')->fileInput() ?>
+
     <div class="form-group">
         <?= Html::submitButton(Yii::t('app', 'Save'), ['class' => 'btn btn-success']) ?>
         <?= Html::a(Yii::t('app', 'Back to List'), ['index'], ['class' => 'btn btn-link']) ?>

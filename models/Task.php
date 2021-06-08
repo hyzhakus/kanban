@@ -3,6 +3,7 @@
 namespace app\models;
 
 use Yii;
+use app\models\User;
 
 /**
  * This is the model class for table "{{%tasks}}".
@@ -51,11 +52,11 @@ class Task extends \yii\db\ActiveRecord
     {
         return [
             'id' => Yii::t('app', 'ID'),
-            'user_id' => Yii::t('app', 'User ID'),
+            'user_id' => Yii::t('app', 'User'),
             'created_at' => Yii::t('app', 'Created At'),
             'name' => Yii::t('app', 'Name'),
             'note' => Yii::t('app', 'Note'),
-            'desk_id' => Yii::t('app', 'Desk ID'),
+            'desk_id' => Yii::t('app', 'Desk'),
         ];
     }
 
@@ -66,7 +67,7 @@ class Task extends \yii\db\ActiveRecord
      */
     public function getUser()
     {
-        return $this->hasOne(Users::className(), ['id' => 'user_id']);
+        return $this->hasOne(User::className(), ['id' => 'user_id']);
     }
 
     /**
