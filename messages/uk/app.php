@@ -42,7 +42,7 @@ return [
     'Incorrect username or password.' => 'Неправильне гасло, або ім\'я',
     'Login' => 'Логін',
     'Logout' => 'Вийти',
-    'Manager' => 'Управляти',
+    'Manager' => 'Менеджер',
     'Name' => 'Iм\'я',
     'Note' => 'Опис',
     'Password' => 'Гасло',

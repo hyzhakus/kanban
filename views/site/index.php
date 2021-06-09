@@ -8,47 +8,58 @@ $this->title = 'My Yii Application';
 <div class="site-index">
 
     <div class="jumbotron">
-        <h1>Congratulations!</h1>
-
-        <p class="lead">You have successfully created your Yii-powered application.</p>
-
-        <p><a class="btn btn-lg btn-success" href="http://www.yiiframework.com">Get started with Yii</a></p>
+        <h1>Ласкаво просимо!</h1>
+        <p class="lead">Дипломний проект "Створення програмного продукту "Канбан дошка" для автоматизованого робочого місця програмного інженера"</p>
     </div>
 
-    <div class="body-content">
-
-        <div class="row">
-            <div class="col-lg-4">
-                <h2>Heading</h2>
-
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et
-                    dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
-                    ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu
-                    fugiat nulla pariatur.</p>
-
-                <p><a class="btn btn-default" href="http://www.yiiframework.com/doc/">Yii Documentation &raquo;</a></p>
-            </div>
-            <div class="col-lg-4">
-                <h2>Heading</h2>
-
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et
-                    dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
-                    ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu
-                    fugiat nulla pariatur.</p>
-
-                <p><a class="btn btn-default" href="http://www.yiiframework.com/forum/">Yii Forum &raquo;</a></p>
-            </div>
-            <div class="col-lg-4">
-                <h2>Heading</h2>
-
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et
-                    dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
-                    ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu
-                    fugiat nulla pariatur.</p>
-
-                <p><a class="btn btn-default" href="http://www.yiiframework.com/extensions/">Yii Extensions &raquo;</a></p>
+    <div class="row">
+        <div class="col-lg-4">
+            <div class="card card-accent-primary">
+                <div class="card-header"><h4>Дошка</h4></div>
+                <div class="card-body">
+                    <p>Реалізована на цьому сайті Канбан дошка має наступні налаштування:
+                        <ul>
+                            <li>необмеженна кількість колонок</li>
+                            <li>назва для кожної з колонок</li>
+                            <li>сортування при виводі на дошку</li>
+                            <li>задачі перетягуються між колонками за допомогою технології drag'n'drop</li>
+                        </ul>
+                    </p>
+                </div>
             </div>
         </div>
 
+        <div class="col-lg-4">
+            <div class="card card-accent-primary">
+                <div class="card-header"><h4>Задачі</h4></div>
+                <div class="card-body">
+                    <p>Управління задачами доповнюється свойствами карток з задачами:
+                        <ul>
+                            <li>необмеженна кількість задач</li>
+                            <li>кожна задача назначається окремому користувачу</li>
+                            <li>задача відображає автар користувача</li>
+                        </ul>
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-lg-4">
+            <div class="card card-accent-primary">
+                <div class="card-header"><h4>Користувачі</h4></div>
+                <div class="card-body">
+                    <p>Для користуванням дошкою потрібно зареєструватися, вказавши наступні дані:
+                        <ul>
+                            <li>Повне ім'я</li>
+                            <li>E-Mail для входу в систему</li>
+                            <li>Гасло для захисту своїх даних</li>
+                            <li>Аватар для візуалізації карток</li>
+                            <li>Роль у системі</li>
+                        </ul>
+                    </p>
+                </div>
+            </div>
+        </div>
     </div>
+
 </div>
